@@ -161,6 +161,7 @@ append.return:
 ; current memory value    eax
 plus.start:
         add eax, 1
+        ;db 0x05, 0x01, 0x00, 0x00, 0x00 ; 32-bit variant
 plus.finish:
 
 minus.start:
