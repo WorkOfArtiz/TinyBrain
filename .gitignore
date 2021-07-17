@@ -1,0 +1,6 @@
+debug/*
+
+*.o
+brain_minified
+brain_debug
+brain_print
