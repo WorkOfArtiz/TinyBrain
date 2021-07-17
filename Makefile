@@ -8,7 +8,7 @@ fmt:
 	./nasmfmt brain.asm
 
 clean:
-	rm brain *.o brain_debug brain_minified brain_print
+	rm -f *.o brain_debug brain_minified brain_print
 
 compile:
 	nasm -felf64 brain.asm -dEXECUTE -o brain_exec.o
@@ -17,10 +17,10 @@ compile:
 link: brain_minified brain_debug brain_print
 
 brain_minified: brain_exec.o
-	ld brain_exec.o -o brain_minified
+	ld brain_exec.o -s -n -o brain_minified
 
 brain_debug: brain_exec.o
-	ld brain_exec.o -s -n -o brain_debug
+	ld brain_exec.o -o brain_debug
 
 brain_print:
 	ld brain_print.o -o brain_print
