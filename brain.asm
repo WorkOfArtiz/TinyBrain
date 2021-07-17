@@ -26,29 +26,30 @@ main:
 main.compile_loop:
         test rcx, rcx
         jz main.done_compiling
+        mov al, byte [rsi]
 
-        cmp byte [rsi], '-'
+        cmp al, '-'
         je main.append_minus
 
-        cmp byte [rsi], '+'
+        cmp al, '+'
         je main.append_plus
 
-        cmp byte [rsi], '<'
+        cmp al, '<'
         je main.append_smaller
 
-        cmp byte [rsi], '>'
+        cmp al, '>'
         je main.append_bigger
 
-        cmp byte [rsi], '.'
+        cmp al, '.'
         je main.append_period
 
-        cmp byte [rsi], ', '
+        cmp al, ', '
         je main.append_comma
 
-        cmp byte [rsi], '['
+        cmp al, '['
         je main.append_open
 
-        cmp byte [rsi], ']'
+        cmp al, ']'
         je main.append_close
 
 main.compile_loop_update:
@@ -155,7 +156,6 @@ append.return:
 ; BF-runtime registers
 ; current memory pointer [memory + r13d * 4]
 ; current memory value    eax
-
 plus.start:
         add eax, 1
 plus.finish:
