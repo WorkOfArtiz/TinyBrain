@@ -122,16 +122,19 @@ main.done_compiling:
         mov r12, main.finish - main.exit
         call append
 
+        %ifdef DUMP_CODE               ; print binary
+        mov rax, 1
+        mov rdi, 1
+        mov rsi, program_memory
+        mov rdx, r14
+        syscall
+        %endif
+
+        %ifdef EXECUTE                 ; execute code
         xor r13, r13
         xor rax, rax
         jmp program_memory
-
-; print binary
-; mov rax, 1
-; mov rdi, 1
-; mov rsi, program_memory
-; mov rdx, r14
-; syscall
+        %endif
 
 main.exit:
         mov rax, 60                    ; system call for exit
